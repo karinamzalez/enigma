@@ -1,20 +1,31 @@
 class KeyGenerator
+  attr_accessor :key
 
-  def initialize(intial_key)
-    @intial_key = initial_key
+  def initialize(key=generate_key)
+    @key = key
   end
 
-  def key
-    if key == 0
-       key = []
-       5.times do
-         key << Random.rand(0..9)
-     else
-       key = key
-     end
-
-  def initial_key_separator
+  def generate_key
     key = []
-    
+    5.times do
+      key << Random.rand(0..9)
+    end
+    @key = key.join("")
+  end
 
+  def a_rotation
+    @key[0..1]
+  end
+
+  def b_rotation
+    @key[1..2]
+  end
+
+  def c_rotation
+    @key[2..3]
+  end
+
+  def d_rotation
+    @key[3..4]
+  end
 end
