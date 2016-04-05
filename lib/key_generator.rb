@@ -1,5 +1,5 @@
 class KeyGenerator
-  attr_accessor :key
+  attr_reader :key
 
   def initialize(key=generate_key)
     @key = key
@@ -13,19 +13,13 @@ class KeyGenerator
     @key = key.join("")
   end
 
-  def a_key
-    @key[0..1].to_i
+  def key_variable_rotations
+    variable_rotations = []
+    variable_rotations << @key[0..1].to_i
+    variable_rotations << @key[1..2].to_i
+    variable_rotations << @key[2..3].to_i
+    variable_rotations << @key[3..4].to_i
   end
 
-  def b_key
-    @key[1..2].to_i
-  end
 
-  def c_key
-    @key[2..3].to_i
-  end
-
-  def d_key
-    @key[3..4].to_i
-  end
 end
