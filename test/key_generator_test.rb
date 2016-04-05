@@ -7,41 +7,36 @@ class KeyGeneratorTest < Minitest::Test
   def test_key_generates_five_digit_number
     key = KeyGenerator.new
     random_key = key.key
-    random_key_rotated = key.a_rotation
+    random_key_rotated = key.a_key
 
     assert_equal 5, random_key.length
-    assert_equal 2, random_key_rotated.length
   end
 
-  def test_a_rotation_is_first_two_digits
+  def test_a_key_is_first_two_digits
     key = KeyGenerator.new("12345")
-    key_rotated_a = key.a_rotation
-    
-    assert_equal "12", key_rotated_a
-    assert_equal 2, key_rotated_a.length
+    key_a = key.a_key
+
+    assert_equal 12, key_a
   end
 
-  def test_b_rotation_is_index_1_and_index_2
+  def test_b_key_is_index_1_and_index_2
     key = KeyGenerator.new("12345")
-    key_rotated_b = key.b_rotation
+    key_b = key.b_key
 
-    assert_equal "23", key_rotated_b
-    assert_equal 2, key_rotated_b.length
+    assert_equal 23, key_b
   end
 
-  def test_c_rotation_is_index_2_and_index_3
+  def test_c_key_is_index_2_and_index_3
     key = KeyGenerator.new("12345")
-    key_rotated_c = key.c_rotation
+    key_c = key.c_key
 
-    assert_equal "34", key_rotated_c
-    assert_equal 2, key_rotated_c.length
+    assert_equal 34, key_c
   end
 
-  def test_d_rotation_is_index_3_and_4
+  def test_d_key_is_index_3_and_4
     key = KeyGenerator.new("12345")
-    key_rotated_d = key.d_rotation
+    key_d = key.d_key
 
-    assert_equal "45", key_rotated_d
-    assert_equal 2, key_rotated_d.length
+    assert_equal 45, key_d
   end
 end

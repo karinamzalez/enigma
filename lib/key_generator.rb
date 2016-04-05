@@ -13,19 +13,19 @@ class KeyGenerator
     @key = key.join("")
   end
 
-  def a_rotation
-    @key[0..1]
+  def a_key
+    @key[0..1].to_i
   end
 
-  def b_rotation
-    @key[1..2]
+  def b_key
+    @key[1..2].to_i
   end
 
-  def c_rotation
-    @key[2..3]
+  def c_key
+    @key[2..3].to_i
   end
 
-  def d_rotation
-    @key[3..4]
+  def d_key
+    @key[3..4].to_i
   end
 end
