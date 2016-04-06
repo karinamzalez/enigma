@@ -4,15 +4,10 @@ require './lib/rotations_generator'
 
 class RotaionsGeneratorTest < Minitest::Test
 
-    def initialize(key=KeyGenerator.new, date=OffsetCalculator.new)
-      @key = key
-      @date = date
-    end
+  def test_rotations_generator_outputs_variable_rotations_in_array
+    encryptor = RotationsGenerator.new(KeyGenerator.new("12345"), OffsetCalculator.new("081995"))
+    encryptor_rotations = encryptor.rotations
 
-  def rotations_generator
-    key_variables = @key.key_variable_rotations
-    date_variables = @date.date_variable_offsets
-
-    key_variables.zip(date_variables).map { |key_date| key_date.inject(:+) }
+    assert_equal [12, 23, 36, 50], encryptor_rotations
   end
 end
