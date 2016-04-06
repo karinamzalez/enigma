@@ -15,16 +15,10 @@ class OffsetCalculator
     variable_offsets = []
     date = @date.to_i**2
     @date = date.to_s[-4..-1]
-      variable_offsets << @date[0].to_i
-      variable_offsets << @date[1].to_i
-      variable_offsets << @date[2].to_i
-      variable_offsets << @date[3].to_i
+
+    variable_offsets << @date[0].to_i
+    variable_offsets << @date[1].to_i
+    variable_offsets << @date[2].to_i
+    variable_offsets << @date[3].to_i
   end
 end
-
-  # # # attr_accessor :
-  # #date.parse
-  # # def initialize("%H:%M:%S")
-  # def date
-  #   ("%H:%M:%S")**2
-  # end

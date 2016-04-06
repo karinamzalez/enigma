@@ -12,38 +12,10 @@ class KeyGeneratorTest < Minitest::Test
     assert_equal 5, random_key.length
   end
 
-  # def test_a_key_is_first_two_digits
-  #   key = KeyGenerator.new("12345")
-  #   key_a = key.a_key
-  #
-  #   assert_equal 12, key_a
-  # end
-  #
-  # def test_b_key_is_index_1_and_index_2
-  #   key = KeyGenerator.new("12345")
-  #   key_b = key.b_key
-  #
-  #   assert_equal 23, key_b
-  # end
-  #
-  # def test_c_key_is_index_2_and_index_3
-  #   key = KeyGenerator.new("12345")
-  #   key_c = key.c_key
-  #
-  #   assert_equal 34, key_c
-  # end
-  #
-  # def test_d_key_is_index_3_and_4
-  #   key = KeyGenerator.new("12345")
-  #   key_d = key.d_key
-  #
-  #   assert_equal 45, key_d
-  # end
-
   def test_key_variable_rotations_gives_array
     key = KeyGenerator.new("12345")
     key_variable_rotations = key.key_variable_rotations
-    
+
     assert_equal [12, 23, 34, 45], key_variable_rotations
   end
 end
