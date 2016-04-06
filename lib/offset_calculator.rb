@@ -1,4 +1,4 @@
-require "./lib/key_generator"
+require_relative "key_generator"
 
 class OffsetCalculator
   attr_reader :date
