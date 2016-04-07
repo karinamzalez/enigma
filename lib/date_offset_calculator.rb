@@ -1,14 +1,10 @@
-require_relative "key_generator"
+require "./lib/key_generator"
 
-class OffsetCalculator
+class DateOffsetCalculator
   attr_reader :date
 
   def initialize(date=(Time.now.strftime"%d%m%y"))
     @date = date
-  end
-
-  def square_date_only
-    @date.to_i**2
   end
 
   def date_variable_offsets

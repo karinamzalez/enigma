@@ -20,6 +20,4 @@ class KeyGenerator
     variable_rotations << @key[2..3].to_i
     variable_rotations << @key[3..4].to_i
   end
-
-
 end

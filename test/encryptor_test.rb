@@ -4,25 +4,41 @@ require "./lib/encryptor.rb"
 
 class EncryptorTest < Minitest::Test
 
-  def test_translate_method_outputs_letter_respective_index_in_array
-    encryptor = Encryptor.new(KeyGenerator.new("12345"), OffsetCalculator.new("081995"), "yo, u figured it out fam")
-    translated_message = encryptor.translate("yo, you figured it out fam")
+  def test_encryptor_is_initialized_with_default_date_and_key
+    encryptor = Encryptor.new
+    encryptor_date = encryptor.date
+    encryptor_key = encryptor.key
 
-    assert_equal [24, 14, 38, 36, 24, 14, 20, 36, 5, 8, 6, 20, 17, 4, 3, 36, 8, 19, 36, 14, 20, 19, 36, 5, 0, 12], translated_message
+    assert_equal "3056", encryptor_date.date
+    assert_equal 5, encryptor_key.key.length
   end
 
-  def test_rotate_message_method_adds_rotation_to_index
-    encryptor = Encryptor.new(KeyGenerator.new("12345"), OffsetCalculator.new("081995"), "yo, u figured it out fam")
-    rotated_message = encryptor.rotate_message("yo, you figured it out fam")
+  def test_translate_method_outputs_letter_corresponding_index_in_array
+    encryptor = Encryptor.new(KeyGenerator.new("12345"), DateOffsetCalculator.new("081995"))
+    translated_message = encryptor.translate("yo, you figured it out fam :)")
 
-    assert_equal [36, 37, 74, 86, 36, 37, 56, 86, 17, 31, 42, 70, 29, 27, 39, 86, 20, 42, 72, 64, 32, 42, 72, 55, 12, 35], rotated_message
+    assert_equal [89, 79, 12, 0, 89, 79, 85, 0, 70, 73, 71, 85, 82, 69, 68, 0, 73, 84, 0, 79, 85, 84, 0, 70, 65, 77, 0, 26, 9], translated_message
   end
 
-  def test_untranslate_outputs_characters_corresponding_to_new_indexes
-      encryptor = Encryptor.new(KeyGenerator.new("12345"), OffsetCalculator.new("081995"), "yo, u figured it out fam")
-      encrypted_message = encryptor.encrypt("yo, you figured it out fam")
+  def test_rotate_message_method_adds_rotation_to_index_array
+    encryptor = Encryptor.new(KeyGenerator.new("12345"), DateOffsetCalculator.new("081995"))
+    rotated_message = encryptor.rotate_message("yo, you figured it out fam :)")
 
-      assert_equal " .9i .rir5d531aiud7z6d7qm9", encrypted_message
+    assert_equal [101, 102, 48, 50, 101, 102, 121, 50, 82, 96, 107, 135, 94, 92, 104, 50, 85, 107, 36, 129, 97, 107, 36, 120, 77, 100, 36, 76, 21], rotated_message
   end
 
+  def test_simplify_rotation_returns_array_with_remainders
+    encryptor = Encryptor.new(KeyGenerator.new("12345"), DateOffsetCalculator.new("081995"))
+    rotated_message = encryptor.rotate_message("yo, you figured it out, fam :)")
+    simplified_rotation = encryptor.simplify_rotation(rotated_message)
+
+    assert_equal [10, 11, 48, 50, 10, 11, 30, 50, 82, 5, 16, 44, 3, 1, 13, 50, 85, 16, 36, 38, 6, 16, 48, 50, 82, 88, 22, 50, 38, 32], simplified_rotation
+  end
+
+  def test_encrypt_outputs_characters_corresponding_to_new_letters
+      encryptor = Encryptor.new(KeyGenerator.new("12345"), DateOffsetCalculator.new("081995"))
+      encrypted_message = encryptor.encrypt("yo, you figured it out fam :)")
+
+      assert_equal "*+PR*+>Rr%0L#!-Ru0DF&0D=m)Dl5", encrypted_message
+  end
 end

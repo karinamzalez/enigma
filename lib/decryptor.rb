@@ -1,9 +1,10 @@
 require './lib/encryptor'
 
 class Decryptor
-  attr_reader :characters
+  attr_reader :characters, :date
 
-  def initialize(key, date, message=nil)
+  def initialize(key=key, date=DateOffsetCalculator.new)
+    @date = date
     @rotations = RotationsGenerator.new(key, date).rotations
     @characters = (' '..'z').to_a
   end
@@ -13,14 +14,14 @@ class Decryptor
     simplified_derotation = simplify_derotation(derotated_message)
 
     a = simplified_derotation.map do |index|
-      letter = characters[index]
+       characters[index]
     end
     a.join("")
   end
 
   def translate(message)
     message.chars.map do |letter|
-      letter = characters.index(letter)
+      characters.index(letter)
     end
   end
 

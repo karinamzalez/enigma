@@ -1,9 +1,11 @@
 require './lib/rotations_generator'
 
 class Encryptor
-  attr_reader :characters
+  attr_reader :characters, :date, :key
 
-  def initialize(key, date, message=nil)
+  def initialize(key=KeyGenerator.new, date=DateOffsetCalculator.new)
+    @date = date
+    @key = key
     @rotations = RotationsGenerator.new(key, date).rotations
     @characters = (' '..'z').to_a
   end
