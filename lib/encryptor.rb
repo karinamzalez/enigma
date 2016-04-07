@@ -15,7 +15,7 @@ class Encryptor
     simplified_rotation = simplify_rotation(rotated_message)
 
     a = simplified_rotation.map do |index|
-      letter = characters[index]
+      characters[index]
     end
       a.join("")
   end
@@ -26,14 +26,14 @@ class Encryptor
     end
   end
 
-   def rotate_message(message)
-     rotations = @rotations
-     message_index = translate(message)
+ def rotate_message(message)
+   rotations = @rotations
+   message_index = translate(message)
 
-    message_index.zip(rotations.cycle).map do |index_rotation|
-       index_rotation.inject(:+)
-     end
-  end
+  message_index.zip(rotations.cycle).map do |index_rotation|
+     index_rotation.inject(:+)
+   end
+ end
 
   def simplify_rotation(rotated_message)
     rotated_message.map do |index|

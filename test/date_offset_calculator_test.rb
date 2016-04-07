@@ -8,7 +8,7 @@ class OffsetCalculatorTest < Minitest::Test
     offset_object = DateOffsetCalculator.new
     offset_date = offset_object.date
 
-    assert_equal "060416", offset_date
+    assert_equal "070416", offset_date
   end
 
   def test_date_variable_offsets_outputs_array_with_last_four_digits_of_date_squared

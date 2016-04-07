@@ -3,7 +3,7 @@ require './lib/encryptor'
 class Decryptor
   attr_reader :characters, :date
 
-  def initialize(key=key, date=DateOffsetCalculator.new)
+  def initialize(key, date=DateOffsetCalculator.new)
     @date = date
     @rotations = RotationsGenerator.new(key, date).rotations
     @characters = (' '..'z').to_a

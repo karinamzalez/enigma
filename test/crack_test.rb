@@ -1,11 +1,11 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/crack'
+require './lib/cracked'
 
 class CrackTest < Minitest::Test
 
   def test_chop_message_to_appropriate_length
-    crack = Crack.new("=E1FsEU")
+    crack = Cracked.new("=E1FsEU")
     encrypted, decrypted = crack.simplify
 
     assert_equal "=E1F".chars, encrypted
@@ -13,7 +13,7 @@ class CrackTest < Minitest::Test
   end
 
   def test_crack_outputs_decrypted_message
-    crack = Crack.new("=E1FsEU")
+    crack = Cracked.new("=E1FsEU")
     crack.decrypt_message
 
     assert "..end.."

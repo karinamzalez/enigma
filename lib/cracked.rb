@@ -54,7 +54,7 @@ class Cracked
       index% characters.length
     end
     a = simplified_rotation.map do |index|
-      letter = characters[index]
+      characters[index]
     end
     a.join("")
   end
